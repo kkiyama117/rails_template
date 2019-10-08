@@ -11,31 +11,6 @@ gem 'rails', '~> 6.0.0'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 4.0'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'jbuilder', '~> 2.7'
-
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS),
-# making cross-origin AJAX possible
-gem 'rack-cors'
-
-# Turbolinks makes navigating your web application faster.
-# Read more: https://github.com/turbolinks/turbolinks
-# gem 'turbolinks', '~> 5'
-# Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
-
-# Turbolinks makes navigating your web application faster.
-# Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
-# Use Active Storage variant
-gem 'image_processing', '~> 1.4'
-
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
 
 # MODEL ========================================================================
 # User auth
@@ -51,6 +26,11 @@ gem 'omniauth-google-oauth2'
 gem 'pundit'
 
 # VIEW =========================================================================
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'webpacker', '~> 4.0'
+# Use SCSS for stylesheets
+# gem 'sass-rails', '~> 5'
+
 # decorator (presentation layer)
 gem 'draper'
 # pager
@@ -68,8 +48,26 @@ gem 'sitemap_generator'
 gem 'sqlite3', '~> 1.4'
 
 # Use Redis adapter to run Action Cable in production
+# Install redis to your computer
 gem 'redis', '~> 4.0'
 gem 'redis-rails'
+
+# OTHERS =======================================================================
+# Use Capistrano for deployment
+gem 'capistrano-rails', group: :development
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+# gem 'jbuilder', '~> 2.7'
+
+# Turbolinks makes navigating your web application faster.
+# Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
+
+# Use Active Storage variant
+gem 'image_processing', '~> 1.4'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.2', require: false
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution
