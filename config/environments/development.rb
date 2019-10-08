@@ -29,11 +29,31 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
+  config.session_store :redis_store,
+                       key: '_api_session',
+                       servers: {
+                         host: 'localhost',
+                         port: '6379',
+                         db: '0',
+                         namespace: 'session'
+                       },
+                       expire_after: 60.minutes
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
+  # mailer
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: Rails.application.credentials.google[:gmail][:address],
+    password: Rails.application.credentials.google[:gmail][:password],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false

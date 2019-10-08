@@ -25,6 +25,14 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
   config.cache_store = :null_store
+  config.session_store :redis_store,
+                       key: '_api_session',
+                       servers: {
+                         host: 'localhost',
+                         port: '6379',
+                         db: '0'
+                       },
+                       expire_after: 60.minutes
 
   # Raise exceptions instead of rendering exception templates.
   config.action_dispatch.show_exceptions = false
@@ -41,10 +49,12 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+
 end

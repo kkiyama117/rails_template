@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-# User Controller without Devise
+# index page for login user
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def show; end
 end
