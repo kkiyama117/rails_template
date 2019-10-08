@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# format User attributes
 class UserDecorator < Draper::Decorator
   delegate_all
 
@@ -9,5 +12,4 @@ class UserDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-
 end
