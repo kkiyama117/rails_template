@@ -11,4 +11,5 @@ Rails.application.routes.draw do
 
   # user root
   get 'users', action: :show, controller: :users, as: :user_root
+  root 'welcome#index'
 end
