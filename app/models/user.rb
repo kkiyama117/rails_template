@@ -11,11 +11,11 @@ class User < ApplicationRecord
   validates :last_name, presence: true, length: { maximum: 10 }, uniqueness: { case_sensitive: false }
 
   # auth model
-  has_many :authentications, dependent: :delete_all
-  accepts_nested_attributes_for :authentications, allow_destroy: true, reject_if: :all_blank
+  has_many :o_auths, dependent: :delete_all
+  accepts_nested_attributes_for :o_auths, allow_destroy: true, reject_if: :all_blank
 
-  scope :with_auth, -> { joins(:authentications) }
+  scope :with_auth, -> { joins(:o_auths) }
   scope :find_by_auth, lambda { |auth|
-    with_auth.merge(Authentication.where(provider: auth.provider, uid: auth.uid))
+    with_auth.merge(OAuth.where(provider: auth.provider, uid: auth.uid))
   }
 end
