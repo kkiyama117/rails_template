@@ -29,6 +29,7 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
+
   config.session_store :redis_store,
                        key: '_api_session',
                        servers: {
@@ -81,4 +82,7 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # https://railsguides.jp/upgrading_ruby_on_rails.html#config-add-autoload-paths-to-load-path
+  config.add_autoload_paths_to_load_path = false
 end

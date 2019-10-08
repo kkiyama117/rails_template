@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -20,9 +20,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super do |user|
+      devise_data = session['devise.user_attributes']
+      if devise_data.present?
+        auth_data = OmniauthParamsBuilder.new(model_name: 'Authentication', auth: devise_data).run
+        user.authentications.create(auth_data)
+      end
+      user
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -38,7 +45,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
+
+  # If you have extra params to permit, append them to the sanitizer.
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys:
+        [:first_name, :last_name, authentications_attributes: %i[id provider uid token]])
+  end
+
+  # If you have extra params to permit, append them to the sanitizer.
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys:
+        [:first_name, :last_name, authentications_attributes: [:_destroy]])
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

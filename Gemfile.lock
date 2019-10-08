@@ -414,7 +414,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
-  bootsnap (>= 1.4.2)
+  bootsnap (>= 1.4.4)
   byebug
   capistrano-rails
   capybara (>= 2.15)
