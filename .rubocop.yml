@@ -5,16 +5,17 @@ Rails:
 
 AllCops:
   Exclude:
+    - "node_modules/**/*"
     - "vendor/**/*" # rubocop config/default.yml
     - "db/schema.rb"
     - "db/seeds.rb"
     - "db/migrate/*"
     - "bin/*"
 
-# 日本語でのコメントを許可
+# Allow comment written by Japanese
 AsciiComments:
   Enabled: false
 
-# モジュール名::クラス名の定義を許可
+# Allow Module::Class
 ClassAndModuleChildren:
   Enabled: false
