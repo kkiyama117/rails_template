@@ -24,8 +24,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super do |user|
       devise_data = session['devise.user_attributes']
       if devise_data.present?
-        auth_data = OmniauthParamsBuilder.new(model_name: 'Authentication', auth: devise_data).run
-        user.authentications.create(auth_data)
+        auth_data = OmniauthParamsBuilder.new(model_name: 'OAuth', auth: devise_data).run
+        user.o_auths.create(auth_data)
       end
       user
     end
@@ -50,13 +50,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys:
-        [:first_name, :last_name, authentications_attributes: %i[id provider uid token]])
+        [:first_name, :last_name, o_auths_attributes: %i[id provider uid token]])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys:
-        [:first_name, :last_name, authentications_attributes: [:_destroy]])
+        [:first_name, :last_name, o_auths_attributes: [:_destroy]])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
