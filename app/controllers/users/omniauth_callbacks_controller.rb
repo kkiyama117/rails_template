@@ -46,7 +46,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     elsif user.present?
       # sign in as OAuth User
       sign_in_and_redirect user, event: :authentication
-      set_flash_message(:notice, :success, kind: auth.provider) if is_navigational_format?
+      if is_navigational_format?
+        set_flash_message(:notice, :success,
+                          kind: auth.provider)
+      end
     else
       # Register new user with OAuth
       session['devise.user_attributes'] = auth
@@ -61,13 +64,20 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
                else
                  'そのアカウントは別のUserによって登録されています'
                end
-      set_flash_message(:notice, :failure, kind: auth.provider, reason: reason) if is_navigational_format?
+      if is_navigational_format?
+        set_flash_message(:notice, :failure, kind: auth.provider,
+                                             reason: reason)
+      end
       redirect_to user_root_path
     else
-      auth_data = OmniauthParamsBuilder.new(model_name: 'Authentication', auth: auth).run
+      auth_data = OmniauthParamsBuilder.new(model_name: 'Authentication',
+                                            auth: auth).run
       current_user.authentications.create(auth_data)
-      set_flash_message(:notice, :success, kind: auth.provider) if is_navigational_format?
+      if is_navigational_format?
+        set_flash_message(:notice, :success,
+                          kind: auth.provider)
+      end
       redirect_to user_root_path
     end
-    end
+  end
 end

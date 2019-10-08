@@ -16,6 +16,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'password_confirmationとpasswordが異なる場合保存できない' do
-    expect(FactoryBot.build(:user, password: 'password', password_confirmation: 'passward')).to_not be_valid
+    expect(FactoryBot.build(:user, password: 'password',
+                                   password_confirmation: 'passward')).to_not be_valid
   end
 end

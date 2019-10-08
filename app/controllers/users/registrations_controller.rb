@@ -24,7 +24,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super do |user|
       devise_data = session['devise.user_attributes']
       if devise_data.present?
-        auth_data = OmniauthParamsBuilder.new(model_name: 'OAuth', auth: devise_data).run
+        auth_data = OmniauthParamsBuilder.new(model_name: 'OAuth',
+                                              auth: devise_data).run
         user.o_auths.create(auth_data)
       end
       user

@@ -1,8 +1,5 @@
 inherit_from: .rubocop_todo.yml
 
-Rails:
-  Enabled: true
-
 AllCops:
   Exclude:
     - "node_modules/**/*"
@@ -19,3 +16,11 @@ AsciiComments:
 # Allow Module::Class
 ClassAndModuleChildren:
   Enabled: false
+
+# Line Length
+Metrics/LineLength:
+  AutoCorrect: true
+
+# fix `def` `end`
+Layout/DefEndAlignment:
+  AutoCorrect: true

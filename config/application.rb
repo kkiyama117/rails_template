@@ -38,7 +38,8 @@ module RailsTemplate
     config.paths.add 'decorators', eager_load: true
     config.time_zone = 'Tokyo'
     config.i18n.default_locale = :ja
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**',
+                                                 '*.{rb,yml}').to_s]
     config.i18n.available_locales = %i[ja en]
 
     # Don't generate system test files.
