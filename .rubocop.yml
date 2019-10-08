@@ -1,0 +1,20 @@
+inherit_from: .rubocop_todo.yml
+
+Rails:
+  Enabled: true
+
+AllCops:
+  Exclude:
+    - "vendor/**/*" # rubocop config/default.yml
+    - "db/schema.rb"
+    - "db/seeds.rb"
+    - "db/migrate/*"
+    - "bin/*"
+
+# 日本語でのコメントを許可
+AsciiComments:
+  Enabled: false
+
+# モジュール名::クラス名の定義を許可
+ClassAndModuleChildren:
+  Enabled: false

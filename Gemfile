@@ -49,6 +49,7 @@ gem 'sqlite3', '~> 1.4'
 
 # Use Redis adapter to run Action Cable in production
 # Install redis to your computer
+# create redis setting
 gem 'redis', '~> 4.0'
 gem 'redis-rails'
 
