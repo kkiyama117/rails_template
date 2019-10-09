@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-# helper for _header.html.erb
-module HeaderHelper
+# Menu
+module MenuBarHelper
+  # for header
   def user_menu
     used_methods = %i[edit_profile_link logout_link]
     case controller_name

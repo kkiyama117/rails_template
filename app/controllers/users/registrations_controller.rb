@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# User Registration (User model create, update and delete)
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
@@ -10,17 +11,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
-
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
-
-  # PUT /resource
-  def update
+  def create
+    #   super
     super do |user|
       devise_data = session['devise.user_attributes']
       if devise_data.present?
@@ -30,6 +22,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
       user
     end
+  end
+
+  # GET /resource/edit
+  # def edit
+  #   super
+  # end
+
+  # PUT /resource
+  def update
+    super
   end
 
   # DELETE /resource

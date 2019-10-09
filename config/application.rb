@@ -42,6 +42,9 @@ module RailsTemplate
                                                  '*.{rb,yml}').to_s]
     config.i18n.available_locales = %i[ja en]
 
+    # helper を 読み込まないように
+    config.action_controller.include_all_helpers = false
+
     # Don't generate system test files.
     config.generators.system_tests = nil
   end

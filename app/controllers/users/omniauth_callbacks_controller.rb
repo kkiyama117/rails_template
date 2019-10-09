@@ -42,7 +42,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth = request.env['omniauth.auth']
     user = User.find_by_auth(auth).first
     if user_signed_in?
-      base_action_when_sign_in user
+      base_action_when_sign_in user, auth
     elsif user.present?
       # sign in as OAuth User
       sign_in_and_redirect user, event: :authentication
@@ -57,7 +57,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def base_action_when_sign_in(user)
+  def base_action_when_sign_in(user, auth)
     if user.present?
       reason = if user == current_user
                  '既にログインしています'
@@ -70,9 +70,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
       redirect_to user_root_path
     else
-      auth_data = OmniauthParamsBuilder.new(model_name: 'Authentication',
+      auth_data = OmniauthParamsBuilder.new(model_name: 'OAuth',
                                             auth: auth).run
-      current_user.authentications.create(auth_data)
+      current_user.o_auths.create(auth_data)
       if is_navigational_format?
         set_flash_message(:notice, :success,
                           kind: auth.provider)
