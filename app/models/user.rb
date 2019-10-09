@@ -12,6 +12,10 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { maximum: 10 }, uniqueness: { case_sensitive: false }
   validates :last_name, presence: true, length: { maximum: 10 }, uniqueness: { case_sensitive: false }
 
+  # Roles
+  has_many :roles, through: :user_roles
+  has_many :user_roles
+
   # auth model
   has_many :o_auths, dependent: :delete_all
   accepts_nested_attributes_for :o_auths, allow_destroy: true, reject_if: :all_blank
