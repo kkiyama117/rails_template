@@ -7,9 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # frozen_string_literal: true
+Role.create(
+        name: 'ADMIN'
+)
+r = Role.create(
+    name: 'NORMAL'
+)
 User.create(
     email: 'k.kiyama117@gmail.com',
     password: '19980117',
     first_name: 'Kiyama',
-    last_name: 'Kouhei'
+    last_name: 'Kouhei',
+    roles: [r]
 )

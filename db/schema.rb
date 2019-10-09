@@ -38,12 +38,12 @@ ActiveRecord::Schema.define(version: 2019_10_09_041609) do
   end
 
   create_table "user_roles", force: :cascade do |t|
-    t.integer "users_id", null: false
-    t.integer "roles_id", null: false
+    t.integer "user_id", null: false
+    t.integer "role_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["roles_id"], name: "index_user_roles_on_roles_id"
-    t.index ["users_id"], name: "index_user_roles_on_users_id"
+    t.index ["role_id"], name: "index_user_roles_on_role_id"
+    t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,6 +66,6 @@ ActiveRecord::Schema.define(version: 2019_10_09_041609) do
   end
 
   add_foreign_key "o_auths", "users"
-  add_foreign_key "user_roles", "roles", column: "roles_id"
-  add_foreign_key "user_roles", "users", column: "users_id"
+  add_foreign_key "user_roles", "roles"
+  add_foreign_key "user_roles", "users"
 end

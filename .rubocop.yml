@@ -5,7 +5,6 @@ AllCops:
     - "node_modules/**/*"
     - "vendor/**/*" # rubocop config/default.yml
     - "db/schema.rb"
-    - "db/seeds.rb"
     - "db/migrate/*"
     - "bin/*"
 

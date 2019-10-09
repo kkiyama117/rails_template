@@ -13,8 +13,8 @@ class User < ApplicationRecord
   validates :last_name, presence: true, length: { maximum: 10 }, uniqueness: { case_sensitive: false }
 
   # Roles
+  has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles
-  has_many :user_roles
 
   # auth model
   has_many :o_auths, dependent: :delete_all
