@@ -24,6 +24,8 @@ gem 'omniauth-google-oauth2'
 # admin
 # rails g pundit:install
 gem 'pundit'
+# manage
+gem 'administrate'
 
 # VIEW =========================================================================
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
